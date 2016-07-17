@@ -149,7 +149,10 @@ function hangul_backspace(e) {
         return true;
     }
 
-    hangul_input(e);
+    if (e.which >= 65 && e.which <= 122)
+        return false;
+
+    return hangul_input(e);
 }
 
 function hangul_showchars() {
@@ -199,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     //$hangul_enter.onkeypress = hangul_input;
     $hangul_enter.onkeydown = hangul_backspace;
+    $hangul_enter.oninput = hangul_input;
 
     hangul_phrase();
 });
