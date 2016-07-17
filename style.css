@@ -33,6 +33,10 @@ img {
     margin: 5px;
 }
 
+#text {
+    cursor: pointer;
+}
+
 input {
     padding: 0;
     min-width: 0;
