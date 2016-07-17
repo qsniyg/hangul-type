@@ -166,7 +166,7 @@ function hangul_backspace(e) {
         return true;
     }
 
-    if (e.which >= 65 && e.which <= 122)
+    if (e.which >= 65 && e.which <= 122 && !e.ctrlKey)
         return false;
 
     return hangul_input(e);
