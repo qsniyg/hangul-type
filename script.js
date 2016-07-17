@@ -53,8 +53,8 @@ function hangul_fix_chars() {
     if (allowed_chars.length === 0)
         allowed_chars = all_chars;
 
-    if (allowed_chars.search("\u3147") < 0)
-        allowed_chars += "\u3147";
+    /*if (allowed_chars.search("\u3147") < 0)
+        allowed_chars += "\u3147";*/
 
     function fix_y(y, c1, c2) {
         if (allowed_chars.search(y) < 0 &&
