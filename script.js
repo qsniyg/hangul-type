@@ -213,7 +213,11 @@ function hangul_changechars() {
         newsize = 40;*/
 
     //$hangul_chars.setAttribute("size", newsize);
-    $hangul_chars.style.width = Math.round(getTextWidth(allowed_chars, "40px sans-serif")) + "px";
+    var newwidth = Math.round(getTextWidth(allowed_chars, "40px sans-serif"));
+    if (newwidth > (window.innerWidth * .8))
+        newwidth = window.innerWidth * .8;
+
+    $hangul_chars.style.width = newwidth + "px";
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
