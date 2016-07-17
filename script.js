@@ -154,6 +154,9 @@ function hangul_check() {
 
     $hangul_text.innerHTML = newtext;
 
+    if (ret)
+        hangul_phrase();
+
     return ret;
 }
 
