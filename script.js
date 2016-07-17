@@ -185,6 +185,8 @@ function hangul_backspace(e) {
 }
 
 function hangul_showchars() {
+    hangul_resizechars();
+
     $hangul_chars.style.top = $hangul_text.getBoundingClientRect().top + "px";
     $hangul_chars.style.display = "block";
     $hangul_text.style.visibility = "hidden";
@@ -197,27 +199,20 @@ function hangul_hidechars() {
     $hangul_enter.focus();
 }
 
-function hangul_changechars() {
-    allowed_chars = $hangul_chars.value;
-    hangul_fix_chars();
-    $hangul_chars.value = allowed_chars;
-
-    /*var newsize = Math.floor(allowed_chars.length * 1.5);
-    if (newsize < 10)
-        newsize = 10;
-    else if (newsize < 20)
-        newsize = 20;
-    else if (newsize < 30)
-        newsize = 30;
-    else
-        newsize = 40;*/
-
-    //$hangul_chars.setAttribute("size", newsize);
+function hangul_resizechars() {
     var newwidth = Math.round(getTextWidth(allowed_chars, "40px sans-serif"));
     if (newwidth > (window.innerWidth * .8))
         newwidth = window.innerWidth * .8;
 
     $hangul_chars.style.width = newwidth + "px";
+}
+
+function hangul_changechars() {
+    allowed_chars = $hangul_chars.value;
+    hangul_fix_chars();
+    $hangul_chars.value = allowed_chars;
+
+    hangul_resizechars();
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -230,8 +225,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $hangul_chars.value = allowed_chars;
     hangul_changechars();
 
-    $hangul_text.onmouseover = hangul_showchars;
-    $hangul_chars.onmouseout = hangul_hidechars;
+    $hangul_text.onclick = hangul_showchars;
+    $hangul_chars.onblur = hangul_hidechars;
 
     //$hangul_enter.onkeypress = hangul_input;
     $hangul_enter.onkeydown = hangul_backspace;
