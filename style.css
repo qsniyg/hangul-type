@@ -1,0 +1,74 @@
+html, body, #container {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 25%;
+    margin: 0;
+    padding: 0;
+}
+
+#hangul-container {
+    display: table;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hangul {
+    font-size: 40px;
+    height: 1.2em;
+    line-height: 1.2em;
+    margin: 5px;
+}
+
+input {
+    padding: 0;
+    min-width: 0;
+    width: auto;
+    padding-bottom: 2px;
+    border: 0;
+    background: none;
+    border-bottom: 3px solid blue;
+    outline: none;
+}
+
+#chars {
+    font-size: 30px;
+    height: 1.2em;
+    line-height: 1.2em;
+    /*margin-bottom: 20px;*/
+
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity .3s;
+}
+
+.nothidden {
+    opacity: 1 !important;
+}
+
+.badchar {
+    color: red;
+}
+
+.goodchar {
+    color: gray;
+}
