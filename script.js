@@ -96,7 +96,7 @@ function hangul_get_char() {
     return String.fromCharCode(0xAC00 + z + 28 * (y + 21 * x));
 }
 
-function hangul_phrase() {
+function hangul_make_phrase() {
     $hangul_text.innerHTML = "";
 
     amt = 4;
@@ -115,9 +115,12 @@ function hangul_phrase() {
             lastspace = false;
         }
 
-        //$hangul_text.innerHTML += String.fromCharCode(getRandomInt(0xAC00, 0xD7A3));
         $hangul_text.innerHTML += hangul_get_char();
     }
+}
+
+function hangul_phrase() {
+    hangul_make_phrase();
 
     $hangul_enter.value = "";
     $hangul_enter.focus();
@@ -213,6 +216,8 @@ function hangul_changechars() {
     $hangul_chars.value = allowed_chars;
 
     hangul_resizechars();
+
+    hangul_make_phrase();
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
