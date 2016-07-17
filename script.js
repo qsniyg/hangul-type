@@ -245,6 +245,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $hangul_chars.oninput = hangul_changechars;
     $hangul_chars.value = allowed_chars;
     hangul_changechars();
+    $hangul_chars.setSelectionRange(allowed_chars.length,
+                                    allowed_chars.length);
 
     $hangul_text.onclick = hangul_showchars;
     $hangul_chars.onblur = hangul_hidechars;
