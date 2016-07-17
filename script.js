@@ -4,6 +4,7 @@
 var $hangul_text;
 var $hangul_enter;
 var $hangul_container;
+var $container;
 var amt = 4;
 //var allowed_chars = "ㅁㄴㅇㄹㅎㅗㅓㅏㅣ";
 var allowed_chars = "\u3141\u3134\u3147\u3139\u314E\u3157\u3153\u314F\u3163";
@@ -237,10 +238,13 @@ function hangul_changechars() {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    allowed_chars = all_chars;
+
     $hangul_text = document.getElementById("text");
     $hangul_enter = document.getElementById("enter");
     $hangul_chars = document.getElementById("chars");
     $hangul_container = document.getElementById("hangul-container");
+    $container = document.getElementById("container");
 
     $hangul_chars.oninput = hangul_changechars;
     $hangul_chars.value = allowed_chars;
@@ -258,6 +262,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.addEventListener("keydown", function(e) {
         if (e.which === 27)
             hangul_togglechars();
+    }, false);
+
+    $container.addEventListener("click", function(e) {
+        if (e.eventPhase === 2)
+            $hangul_enter.focus();
     }, false);
 
     window.setTimeout(hangul_phrase, 1);
