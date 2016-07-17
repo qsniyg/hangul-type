@@ -211,9 +211,13 @@ function hangul_resizechars() {
 }
 
 function hangul_changechars() {
+    var last_select = $hangul_chars.selectionStart;
+
     allowed_chars = $hangul_chars.value;
     hangul_fix_chars();
     $hangul_chars.value = allowed_chars;
+
+    $hangul_chars.setSelectionRange(last_select, last_select);
 
     hangul_resizechars();
 
