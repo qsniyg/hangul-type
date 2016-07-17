@@ -21,6 +21,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getTextNodeWidth(textNode) {
+    var height = 0;
+    if (document.createRange) {
+        var range = document.createRange();
+        range.selectNodeContents(textNode);
+        if (range.getBoundingClientRect) {
+            var rect = range.getBoundingClientRect();
+            if (rect) {
+                height = rect.right - rect.left;
+            }
+        }
+    }
+    return Math.round(height);
+}
+
 function pickRandom(array) {
     return array[getRandomInt(0, array.length - 1)];
 }
@@ -98,7 +113,8 @@ function hangul_phrase() {
     $hangul_enter.value = "";
     $hangul_enter.focus();
     $hangul_enter.setAttribute("maxlength", amt);
-    $hangul_enter.setAttribute("size", amt);
+    //$hangul_enter.setAttribute("size", amt);
+    $hangul_enter.style.width = $hangul_text.offsetWidth + "px";
 }
 
 function hangul_check() {
@@ -122,6 +138,7 @@ function hangul_check() {
                 j++;
             } else {
                 newtext += text[i];
+                ret = false;
             }
         }
     }
@@ -204,5 +221,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $hangul_enter.onkeydown = hangul_backspace;
     $hangul_enter.oninput = hangul_input;
 
-    hangul_phrase();
+    window.setTimeout(hangul_phrase, 1);
 });
