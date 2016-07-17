@@ -16,6 +16,7 @@ var consonants = "\u3131\u3132\u3134\u3137\u3138\u3139\u3141\u3142\u3143\u3145\u
 var vowels = "\u314F\u3150\u3151\u3152\u3153\u3154\u3155\u3156\u3157\u3158\u3159\u315A\u315B\u315C\u315D\u315E\u315F\u3160\u3161\u3162\u3163";
 var jongseong = "X\u3131\u3132\u3133\u3134\u3135\u3136\u3137\u3139\u313A\u313B\u313C\u313D\u313E\u313F\u3140\u3141\u3142\u3144\u3145\u3146\u3147\u3148\u314A\u314B\u314C\u314D\u314E";
 var all_chars = consonants + vowels;
+var chars_shown = false;
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -194,12 +195,23 @@ function hangul_showchars() {
     $hangul_chars.style.display = "block";
     $hangul_text.style.visibility = "hidden";
     $hangul_chars.focus();
+
+    chars_shown = true;
 }
 
 function hangul_hidechars() {
     $hangul_chars.style.display = "none";
     $hangul_text.style.visibility = "visible";
     $hangul_enter.focus();
+
+    chars_shown = false;
+}
+
+function hangul_togglechars() {
+    if (chars_shown)
+        hangul_hidechars();
+    else
+        hangul_showchars();
 }
 
 function hangul_resizechars() {
@@ -240,6 +252,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //$hangul_enter.onkeypress = hangul_input;
     $hangul_enter.onkeydown = hangul_backspace;
     $hangul_enter.oninput = hangul_input;
+
+    document.addEventListener("keydown", function(e) {
+        if (e.which === 27)
+            hangul_togglechars();
+    }, false);
 
     window.setTimeout(hangul_phrase, 1);
 });
