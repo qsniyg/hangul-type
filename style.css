@@ -37,15 +37,15 @@ input {
     padding: 0;
     min-width: 0;
     width: auto;
-    padding-bottom: 2px;
+    /*padding-bottom: 2px;*/
     border: 0;
     background: none;
-    border-bottom: 3px solid blue;
+    /*border-bottom: 3px solid blue;*/
     outline: none;
 }
 
 #chars {
-    font-size: 30px;
+    font-size: 40px;
     height: 1.2em;
     line-height: 1.2em;
     /*margin-bottom: 20px;*/
@@ -55,14 +55,7 @@ input {
     left: 50%;
     transform: translate(-50%, 0);
 
-    opacity: 0;
-    visibility: hidden;
-
-    transition: opacity .3s;
-}
-
-.nothidden {
-    opacity: 1 !important;
+    display: none
 }
 
 .badchar {
